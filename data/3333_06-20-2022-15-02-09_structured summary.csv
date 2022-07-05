@@ -1,0 +1,5 @@
+Subject ID,Stimulus File,Trial Number,Trial Name,Air Puff,Context,Prediction Rating,Affect Rating,Dwell Time,Approach,Fuel
+../data/3333,../data/3333_06-20-2022-stim_file.csv,1,T1,1,"""red""", 3, 5,6.2,      1.98,1
+../data/3333,../data/3333_06-20-2022-stim_file.csv,2,T2,1,"""red""",999,999,0,      5.31,0
+../data/3333,../data/3333_06-20-2022-stim_file.csv,3,T3,1,"""red""", 5, 5,0,      5.35,0
+../data/3333,../data/3333_06-20-2022-stim_file.csv,4,T4,1,"""red""",999,999,0,      5.35,0

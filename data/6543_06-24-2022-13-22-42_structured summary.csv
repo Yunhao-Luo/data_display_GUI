@@ -1,0 +1,3 @@
+Subject ID,Stimulus File,Trial Number,Trial Name,Air Puff,Context,Prediction Rating,Affect Rating,Dwell Time,Approach,Fuel
+../data/6543,../data/6543_06-24-2022-stim_file.csv,1,explore,0,"""green""",999,999,0,     -1.00,0
+../data/6543,../data/6543_06-24-2022-stim_file.csv,2,prePRfrog1,0,"""green""", 5,999,0,      2.89,1

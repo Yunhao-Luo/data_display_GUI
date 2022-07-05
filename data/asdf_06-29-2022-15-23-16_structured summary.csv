@@ -1,0 +1,13 @@
+Subject ID,Stimulus File,Trial Number,Trial Name,Air Puff,Context,Prediction Rating,Affect Rating,Dwell Time,Approach,Fuel
+asdf,asdf_06-29-2022-stim_file.csv,1,explore,0,"""green""",999,999,0,     -1.00,1
+asdf,asdf_06-29-2022-stim_file.csv,2,prePRfrog1,0,"""green""", 4,999,0,      2.58,1
+asdf,asdf_06-29-2022-stim_file.csv,3,prePRfrog2,0,"""green""",999,999,0,      2.36,1
+asdf,asdf_06-29-2022-stim_file.csv,4,prePRfrog3,0,"""green""",999,999,0,      2.53,1
+asdf,asdf_06-29-2022-stim_file.csv,5,prePRfrog4,0,"""green""",999,999,0,      2.70,1
+asdf,asdf_06-29-2022-stim_file.csv,6,prePRfrog5,0,"""green""", 8,999,0,      1.29,1
+asdf,asdf_06-29-2022-stim_file.csv,7,prePRfrog6,0,"""green""",999,999,0,     19.12,0
+asdf,asdf_06-29-2022-stim_file.csv,8,prePRfrog7,0,"""green""",999,999,0,     23.86,0
+asdf,asdf_06-29-2022-stim_file.csv,9,prePRfrog8,0,"""green""",999,999,0,     19.37,0
+asdf,asdf_06-29-2022-stim_file.csv,10,prePRfrog9,0,"""green""", 5,999,2.3,      2.91,1
+asdf,asdf_06-29-2022-stim_file.csv,11,prePRfrog10,0,"""green""",999,999,1.2,      2.64,1
+asdf,asdf_06-29-2022-stim_file.csv,12,prePRfrog11,0,"""green""",999,999,0,      2.04,1

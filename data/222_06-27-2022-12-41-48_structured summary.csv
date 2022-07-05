@@ -1,0 +1,47 @@
+Subject ID,Stimulus File,Trial Number,Trial Name,Air Puff,Context,Prediction Rating,Affect Rating,Dwell Time,Approach,Fuel
+../data/222,../data/222_06-27-2022-stim_file.csv,1,explore,0,"""green""",999,999,0,     -1.00,1
+../data/222,../data/222_06-27-2022-stim_file.csv,2,prePRfrog1,0,"""green""", 5,999,0,      9.19,0
+../data/222,../data/222_06-27-2022-stim_file.csv,3,prePRfrog2,0,"""green""",999,999,0,      3.46,0
+../data/222,../data/222_06-27-2022-stim_file.csv,4,prePRfrog3,0,"""green""",999,999,0,     15.24,0
+../data/222,../data/222_06-27-2022-stim_file.csv,5,prePRfrog4,0,"""green""",999,999,0,      4.47,0
+../data/222,../data/222_06-27-2022-stim_file.csv,6,prePRfrog5,0,"""green""", 5,999,0,     12.57,0
+../data/222,../data/222_06-27-2022-stim_file.csv,7,prePRfrog6,0,"""green""",999,999,0,      3.35,0
+../data/222,../data/222_06-27-2022-stim_file.csv,8,prePRfrog7,0,"""green""",999,999,0,      4.19,0
+../data/222,../data/222_06-27-2022-stim_file.csv,9,prePRfrog8,0,"""green""",999,999,0,      5.78,0
+../data/222,../data/222_06-27-2022-stim_file.csv,10,prePRfrog9,0,"""green""", 5,999,0,     11.64,0
+../data/222,../data/222_06-27-2022-stim_file.csv,11,prePRfrog10,0,"""green""",999,999,0,      6.62,0
+../data/222,../data/222_06-27-2022-stim_file.csv,12,prePRfrog11,0,"""green""",999,999,0,      7.02,0
+../data/222,../data/222_06-27-2022-stim_file.csv,13,prePRfrog12,0,"""green""",999,999,0,      6.26,0
+../data/222,../data/222_06-27-2022-stim_file.csv,14,conNPmush1,1,"""green""", 5,999,0,     10.29,0
+../data/222,../data/222_06-27-2022-stim_file.csv,15,conCTRadi1,0,"""green""", 5,999,0,     17.58,0
+../data/222,../data/222_06-27-2022-stim_file.csv,16,conPRfrog1,1,"""green""", 5,999,0,     12.02,0
+../data/222,../data/222_06-27-2022-stim_file.csv,17,conNPmush2,1,"""green""",999,999,0.7,      2.25,0
+../data/222,../data/222_06-27-2022-stim_file.csv,18,conPRfrog3,1,"""green""",999,999,0,      4.54,0
+../data/222,../data/222_06-27-2022-stim_file.csv,19,conPRfrog4,0,"""green""",999,999,0,     13.09,0
+../data/222,../data/222_06-27-2022-stim_file.csv,20,conPRfrog2,1,"""green""",999,999,0,      6.74,0
+../data/222,../data/222_06-27-2022-stim_file.csv,21,conNPmush3,1,"""green""",999,999,0,      4.70,0
+../data/222,../data/222_06-27-2022-stim_file.csv,22,conCTRadi4,0,"""green""",999,999,0,     12.19,0
+../data/222,../data/222_06-27-2022-stim_file.csv,23,conCTRadi2,0,"""green""",999,999,0.9,      5.60,0
+../data/222,../data/222_06-27-2022-stim_file.csv,24,conCTRadi3,0,"""green""",999,999,0,      2.40,0
+../data/222,../data/222_06-27-2022-stim_file.csv,25,conNPmush4,0,"""green""",999,999,0,      3.38,0
+../data/222,../data/222_06-27-2022-stim_file.csv,26,conCTRadi5,0,"""green""", 5,999,0,      5.28,0
+../data/222,../data/222_06-27-2022-stim_file.csv,27,conPRfrog5,1,"""green""", 5,999,0,     11.49,0
+../data/222,../data/222_06-27-2022-stim_file.csv,28,conNPmush5,1,"""green""", 5,999,0,      7.85,0
+../data/222,../data/222_06-27-2022-stim_file.csv,29,conCTRadi8,0,"""green""",999,999,0,      5.99,0
+../data/222,../data/222_06-27-2022-stim_file.csv,30,conCTRadi6,0,"""green""",999,999,0,      6.08,0
+../data/222,../data/222_06-27-2022-stim_file.csv,31,conNPmush7,1,"""green""",999,999,0,      4.58,0
+../data/222,../data/222_06-27-2022-stim_file.csv,32,conPRfrog8,0,"""green""",999,999,0,     18.33,0
+../data/222,../data/222_06-27-2022-stim_file.csv,33,conNPmush8,0,"""green""",999,999,0,     18.23,0
+../data/222,../data/222_06-27-2022-stim_file.csv,34,conNPmush6,1,"""green""",999,999,0,     16.91,0
+../data/222,../data/222_06-27-2022-stim_file.csv,35,conPRfrog6,1,"""green""",999,999,0,      1.87,0
+../data/222,../data/222_06-27-2022-stim_file.csv,36,conCTRadi7,0,"""green""",999,999,0,     39.77,0
+../data/222,../data/222_06-27-2022-stim_file.csv,37,conPRfrog7,1,"""green""",999,999,0,     12.30,0
+../data/222,../data/222_06-27-2022-stim_file.csv,38,conPRfrog9,1,"""green""", 5,999,0,     12.96,0
+../data/222,../data/222_06-27-2022-stim_file.csv,39,conNPmush9,1,"""green""", 5,999,0,     12.47,0
+../data/222,../data/222_06-27-2022-stim_file.csv,40,conCTRadi9,0,"""green""", 5,999,0,     15.71,0
+../data/222,../data/222_06-27-2022-stim_file.csv,41,conCTRadi10,0,"""green""",999,999,0,     20.95,0
+../data/222,../data/222_06-27-2022-stim_file.csv,42,conCTRadi12,0,"""green""",999,999,0,     12.89,0
+../data/222,../data/222_06-27-2022-stim_file.csv,43,conCTRadi11,0,"""green""",999,999,0,      7.11,0
+../data/222,../data/222_06-27-2022-stim_file.csv,44,conNPmush11,1,"""green""",999,999,0,     19.12,0
+../data/222,../data/222_06-27-2022-stim_file.csv,45,conPRfrog10,1,"""green""",999,999,0,     19.14,0
+../data/222,../data/222_06-27-2022-stim_file.csv,46,conPRfrog11,1,"""green""",999,999,0,     19.14,0

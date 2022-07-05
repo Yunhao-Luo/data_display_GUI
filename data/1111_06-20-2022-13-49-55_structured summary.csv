@@ -1,0 +1,13 @@
+Subject ID,Stimulus File,Trial Number,Trial Name,Air Puff,Context,Prediction Rating,Affect Rating,Dwell Time,Approach,Fuel
+../data/1111,../data/1111_06-20-2022-stim_file.csv,1,explore,0,"""green""",999,999,0,     -1.00,0
+../data/1111,../data/1111_06-20-2022-stim_file.csv,2,prePRfrog1,0,"""green""", 5, 5,0,     15.38,0
+../data/1111,../data/1111_06-20-2022-stim_file.csv,3,prePRfrog2,0,"""green""",999,999,0,      2.74,1
+../data/1111,../data/1111_06-20-2022-stim_file.csv,4,prePRfrog3,0,"""green""",999,999,0,      2.36,1
+../data/1111,../data/1111_06-20-2022-stim_file.csv,5,prePRfrog4,0,"""green""",999,999,0,      1.96,1
+../data/1111,../data/1111_06-20-2022-stim_file.csv,6,prePRfrog5,0,"""green""", 5, 8,0,      2.92,1
+../data/1111,../data/1111_06-20-2022-stim_file.csv,7,prePRfrog6,0,"""green""",999,999,0,     17.21,0
+../data/1111,../data/1111_06-20-2022-stim_file.csv,8,prePRfrog7,0,"""green""",999,999,0,      6.19,0
+../data/1111,../data/1111_06-20-2022-stim_file.csv,9,prePRfrog8,0,"""green""",999,999,0,      4.94,1
+../data/1111,../data/1111_06-20-2022-stim_file.csv,10,prePRfrog9,0,"""green""", 5, 5,0,      3.95,1
+../data/1111,../data/1111_06-20-2022-stim_file.csv,11,prePRfrog10,0,"""green""",999,999,0,      6.16,0
+../data/1111,../data/1111_06-20-2022-stim_file.csv,12,prePRfrog11,0,"""green""",999,999,0,      3.30,1
