@@ -38,8 +38,8 @@ class DataDisplay(tk.Tk):
 
     def update_menu_options(self):
 
-        sessions = FileFinder(DATA_PATH)
-        new_options = sessions.find_id_sessions(self.participant_name.get())
+        self.sessions = FileFinder(DATA_PATH)
+        new_options = self.sessions.find_id_sessions(self.participant_name.get())
         if len(new_options) == 0:
             new_options.append("No such participant!")
         
@@ -49,10 +49,12 @@ class DataDisplay(tk.Tk):
             self.option_menu['menu'].add_command(label=option, command=tk._setit(self.var, option))
 
     def display_data(self):
-        file_name = self.var.get()
-        data_window = tk.Tk()
+        date = self.var.get()
+        file_name_list = self.sessions.find_all_files_date(self.participant_name.get(), date)
+        print(file_name_list)
+        """data_window = tk.Tk()
         data_window.title(file_name)
-        file_path = DATA_PATH + '/' + file_name
+        file_path = DATA_PATH + '/' + file_name + '*'
         data_content = []
 
         if 'csv' in file_name:
@@ -75,7 +77,7 @@ class DataDisplay(tk.Tk):
             tk.Label(data_window, text=data_content).pack()
 
         data_window.mainloop()
-
+"""
 
 
 

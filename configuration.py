@@ -1,1 +1,1 @@
-DATA_PATH = "/Users/Luo/Desktop/data_display/data"
+DATA_PATH = "/Users/Luo/Internship/data_display_GUI/data"

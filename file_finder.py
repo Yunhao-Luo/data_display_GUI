@@ -18,6 +18,13 @@ class FileFinder:
                 sessions_list.append(date)
         return sessions_list
 
+    def find_all_files_date(self, id, date):
+        files_same_date = []
+        for file in self.file_names:
+            if id in file and date in file:
+                files_same_date.append(file)
+        return files_same_date
+
 """ if __name__ == "__main__":
     test = FileFinder(DATA_PATH)
     test.read_file_names()
