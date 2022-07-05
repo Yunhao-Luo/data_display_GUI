@@ -1,8 +1,10 @@
 from asyncore import read
 from cProfile import label
 from distutils.cmd import Command
+from importlib.resources import path
 import tkinter as tk
 import csv
+from tkinter import ttk
 
 from file_finder import *
 from configuration import *
@@ -51,14 +53,28 @@ class DataDisplay(tk.Tk):
     def display_data(self):
         date = self.var.get()
         file_name_list = self.sessions.find_all_files_date(self.participant_name.get(), date)
-        print(file_name_list)
-        """data_window = tk.Tk()
-        data_window.title(file_name)
-        file_path = DATA_PATH + '/' + file_name + '*'
-        data_content = []
-
-        if 'csv' in file_name:
-            with open(file_path, 'r', newline="") as f:
+        self.data_window = tk.Tk()
+        self.data_window.title("data")
+        self.data_content = []   
+        tabControl = ttk.Notebook(self.data_window)
+        count = 0
+        
+        for file in file_name_list:
+            count+=1
+            tab = ttk.Frame(tabControl)
+            tabControl.add(tab, text ='Tab '+str(count))
+            tabControl.pack(expand = 1, fill ="both") 
+            ttk.Label(tab,
+                    text ="Lets dive into the\
+                    world of computers").grid(column = 0,
+                                                row = 0, 
+                                                padx = 30,
+                                                pady = 30)
+        self.data_window.mainloop()
+    
+    def read_file(self, path):
+        if 'csv' in path:
+            with open(path, 'r', newline="") as f:
                 reader = csv.reader(f)
                 data = list(reader)
 
@@ -66,18 +82,15 @@ class DataDisplay(tk.Tk):
             for i , row in enumerate(data, start=4):
                 entrieslist.append(row[0])
                 for col in range(0, 10):
-                    tk.Label(data_window, text = row[col]).grid(row=i, column=col)
+                    tk.Label(self.data_window, text = row[col]).grid(row=i, column=col)
         else:
-            with open(file_path, 'r', ) as f:
+            with open(path, 'r', ) as f:
                 content = f.readlines()
 
             for line in content:
-                data_content.append(line)
+                self.data_content.append(line)
 
-            tk.Label(data_window, text=data_content).pack()
-
-        data_window.mainloop()
-"""
+            tk.Label(self.data_window, text=self.data_content).grid()
 
 
 
