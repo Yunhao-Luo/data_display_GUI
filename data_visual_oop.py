@@ -173,16 +173,8 @@ class DataDisplay(tk.Tk):
 
         with open(path, 'r') as f:
             lines = f.readlines()
-        num = 0
         for line in lines:
-            line_num = str(num) + '.0'
             text.insert(INSERT, str(line))
-            print(line)
-            num+=1
-
-        """ for i in range(0, len(lines)):
-            line_num = str(i) + '.0'
-            text.insert(line_num, str(lines[i])) """
 
 if __name__ == "__main__":
     data_visualization = DataDisplay()
