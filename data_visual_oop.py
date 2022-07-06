@@ -68,7 +68,8 @@ class DataDisplay(tk.Tk):
             tabControl.pack(expand = 1, fill ="both") 
             path = DATA_PATH
             path += "/" + file
-            self.read_file(path, tab)
+            # self.read_file(path, tab)
+            self.tab_construct(tab, path)
 
         # show window
         self.data_window.mainloop()
@@ -113,54 +114,86 @@ class DataDisplay(tk.Tk):
                 self.data_content.append(line)
 
             # tk.Label(self.data_window, text=self.data_content).grid()
+    
+    def tab_construct(self, window, path):
+        # Create a frame for the canvas with non-zero row&column weights
+        frame_canvas = tk.Frame(window)
+        frame_canvas.grid(row=2, column=0, pady=(5, 0), sticky='nw')
+        frame_canvas.grid_rowconfigure(0, weight=1)
+        frame_canvas.grid_columnconfigure(0, weight=1)
+        # Set grid_propagate to False to allow 5-by-5 buttons resizing later
+        frame_canvas.grid_propagate(False)
 
-    def display_file(self, path):
-        frame = ttk.Frame(self.data_window, width=300, height=250)
+        # Add a canvas in that frame
+        canvas = tk.Canvas(frame_canvas, bg="yellow")
+        canvas.grid(row=0, column=0, sticky="news")
 
-        # Canvas creation with double scrollbar
-        hscrollbar = ttk.Scrollbar(frame, orient=tk.HORIZONTAL)
-        vscrollbar = ttk.Scrollbar(frame, orient=tk.VERTICAL)
-        sizegrip = ttk.Sizegrip(frame)
-        canvas = tk.Canvas(frame, bd=0, highlightthickness=0, yscrollcommand=vscrollbar.set,
-                                    xscrollcommand=hscrollbar.set)
-        vscrollbar.config(command=canvas.yview)
-        hscrollbar.config(command=canvas.xview)
+        # Link a scrollbar to the canvas
+        vsb = tk.Scrollbar(frame_canvas, orient="vertical", command=canvas.yview)
+        vsb.grid(row=0, column=1, sticky='ns')
+        canvas.configure(yscrollcommand=vsb.set)
 
-        # Add controls here
-        subframe = ttk.Frame(canvas)
+        # Create a frame to contain the buttons
+        frame_buttons = tk.Frame(canvas, bg="blue")
+        canvas.create_window((0, 0), window=frame_buttons, anchor='nw')
 
-        # open file
-        path = "/Users/Luo/Internship/data_display_GUI/data"
-        path += "/" + file
-        with open(path, newline="") as file:
-            reader = csv.reader(file)
+        if '.csv' in path:
+            with open(path, 'r', newline="") as f:
+                            reader = csv.reader(f)
+                            data = list(reader)
+        else:
+            data = []
+            with open(path) as f:
+                lines = f.readlines()
+            if len(lines) > 100:
+                lines = lines[0:50]
 
-            # r and c tell us where to grid the labels
-            r = 0
-            for col in reader:
-                c = 0
-                for row in col:
-                    # i've added some styling
-                    label = tk.Label(subframe, width=10, height=2,
-                                            text=row, relief=tk.RIDGE)
-                    label.grid(row=r, column=c)
-                    c += 1
-                r += 1
+            for row in lines:
+                new_row = row.split(" ")
+                data.append(new_row)
 
-        # Packing everything
-        subframe.pack(fill=tk.BOTH, expand=tk.TRUE)
-        hscrollbar.pack(fill=tk.X, side=tk.BOTTOM, expand=tk.FALSE)
-        vscrollbar.pack(fill=tk.Y, side=tk.RIGHT, expand=tk.FALSE)
-        sizegrip.pack(in_=hscrollbar, side=tk.BOTTOM, anchor="se")
-        canvas.pack(side=tk.LEFT, padx=5, pady=5, fill=tk.BOTH, expand=tk.TRUE)
-        frame.pack(padx=5, pady=5, expand=True, fill=tk.BOTH)
+            for i in range(0, len(data)):
+                for j in range(0, len(data[i])):
+                    if data[i][j] == ('\n' or '\t'):
+                        del data[i][j]
+            for row in data:
+                if row == []:
+                    del row
 
-        canvas.create_window(0, 0, window=subframe)
-        self.data_window.update_idletasks()  # update geometry
+            while(len(data) < 5):
+                data.append([])
+            maxlen = 0
+            for row in data:
+                if len(row) > maxlen:
+                    maxlen = len(row)
+                while(len(row) < 5):
+                    row.append(' ')
+            for row in data:
+                while(len(row) < maxlen):
+                    row.append('')
+
+        # Add buttons to the frame
+        rows = len(data)
+        columns = len(data[2])
+        buttons = [[tk.Button() for j in range(columns)] for i in range(rows)]
+        for i in range(0, rows):
+            for j in range(0, columns):
+                buttons[i][j] = tk.Button(frame_buttons, text=(data[i][j]))
+                buttons[i][j].grid(row=i, column=j, sticky='news')
+
+        # Update buttons frames idle tasks to let tkinter calculate buttons sizes
+        frame_buttons.update_idletasks()
+
+        # Resize the canvas frame to show exactly 5-by-5 buttons and the scrollbar
+        if rows > 17:
+            rows = 15
+        first5columns_width = sum([buttons[0][j].winfo_width() for j in range(0, columns)])
+        first5rows_height = sum([buttons[i][0].winfo_height() for i in range(0, rows)])
+        frame_canvas.config(width=first5columns_width + vsb.winfo_width(),
+                            height=first5rows_height)
+
+        # Set the canvas scrolling region
         canvas.config(scrollregion=canvas.bbox("all"))
-        canvas.xview_moveto(0)
-        canvas.yview_moveto(0)
-
 
 
 if __name__ == "__main__":
