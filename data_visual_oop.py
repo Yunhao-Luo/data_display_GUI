@@ -68,63 +68,20 @@ class DataDisplay(tk.Tk):
             tabControl.pack(expand = 1, fill ="both") 
             path = DATA_PATH
             path += "/" + file
-            # self.read_file(path, tab)
             self.tab_construct(tab, path)
 
-        # show window
         self.data_window.mainloop()
 
-    def read_file(self, path, display_window):
-        if 'csv' in path:
-            with open(path, 'r', newline="") as f:
-                reader = csv.reader(f)
-                data = list(reader)
-            
-            canvas = tk.Canvas(display_window)
-            canvas.grid(row=0, column=0, sticky="news")
-
-            # Link a scrollbar to the canvas
-            vsb = tk.Scrollbar(display_window, orient="vertical", command=canvas.yview)
-            vsb.grid(row=0, column=1, sticky='ns')
-            canvas.configure(yscrollcommand=vsb.set)
-
-            # Create a frame to contain the buttons
-            frame_buttons = tk.Frame(canvas, bg="blue")
-            canvas.create_window((0, 0), window=frame_buttons, anchor='nw')
-
-            # Add 9-by-5 buttons to the frame
-            for row in range(0, len(data)):
-                for col in range(0, len(data[row])):
-                    tk.Label(canvas, text = data[row][col]).grid(row=row, column=col)
-            
-            # Update buttons frames idle tasks to let tkinter calculate buttons sizes
-            frame_buttons.update_idletasks()
-            canvas.config(scrollregion=canvas.bbox("all"))
-
-
-        else:
-            with open(path, 'r', ) as f:
-                content = f.readlines()
-
-            for line in content:
-                self.data_content.append(line)
-
-            # tk.Label(self.data_window, text=self.data_content).grid()
-    
     def tab_construct(self, window, path):
-        # Create a frame for the canvas with non-zero row&column weights
         frame_canvas = tk.Frame(window)
         frame_canvas.grid(row=2, column=0, pady=(5, 0), sticky='nw')
         frame_canvas.grid_rowconfigure(0, weight=1)
         frame_canvas.grid_columnconfigure(0, weight=1)
-        # Set grid_propagate to False to allow 5-by-5 buttons resizing later
         frame_canvas.grid_propagate(False)
 
-        # Add a canvas in that frame
         canvas = tk.Canvas(frame_canvas, bg="yellow")
         canvas.grid(row=0, column=0, sticky="news")
 
-        # Link a scrollbar to the canvas
         vsb = tk.Scrollbar(frame_canvas, orient="vertical", command=canvas.yview)
         vsb.grid(row=0, column=1, sticky='ns')
         canvas.configure(yscrollcommand=vsb.set)
@@ -132,7 +89,6 @@ class DataDisplay(tk.Tk):
         hsb.grid(row=1, column=0, sticky='we')
         canvas.configure(xscrollcommand=hsb.set)
 
-        # Create a frame to contain the buttons
         frame_buttons = tk.Frame(canvas, bg="blue")
         canvas.create_window((0, 0), window=frame_buttons, anchor='nw')
 
@@ -144,7 +100,6 @@ class DataDisplay(tk.Tk):
             self.read_txt(frame_canvas, path)
             return
 
-        # Add buttons to the frame
         rows = len(data)
         columns = len(data[0])
         buttons = [[tk.Button() for j in range(columns)] for i in range(rows)]
@@ -153,10 +108,8 @@ class DataDisplay(tk.Tk):
                 buttons[i][j] = tk.Button(frame_buttons, text=(data[i][j]))
                 buttons[i][j].grid(row=i, column=j, sticky='news')
 
-        # Update buttons frames idle tasks to let tkinter calculate buttons sizes
         frame_buttons.update_idletasks()
 
-        # Resize the canvas frame to show exactly 5-by-5 buttons and the scrollbar
         if rows > 20:
             rows = 20
         first5columns_width = sum([buttons[0][j].winfo_width() for j in range(0, columns)])
@@ -164,7 +117,6 @@ class DataDisplay(tk.Tk):
         frame_canvas.config(width=first5columns_width + vsb.winfo_width(),
                             height=first5rows_height + vsb.winfo_height())
 
-        # Set the canvas scrolling region
         canvas.config(scrollregion=canvas.bbox("all"))
 
     def read_txt(self, window, path):
