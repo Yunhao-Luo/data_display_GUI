@@ -4,7 +4,7 @@ from distutils.cmd import Command
 from importlib.resources import path
 import tkinter as tk
 import csv
-from tkinter import ttk
+from tkinter import ttk, Text
 
 from file_finder import *
 from configuration import *
@@ -55,8 +55,8 @@ class DataDisplay(tk.Tk):
         file_name_list = self.sessions.find_all_files_date(self.participant_name.get(), date)
         self.data_window = tk.Tk()
         self.data_window.title("data")
-        w, h = self.data_window.winfo_screenwidth(), self.data_window.winfo_screenheight()
-        self.data_window.geometry("%dx%d+0+0" % (0.99 * w, 0.9 * h))
+        self.w, self.h = self.data_window.winfo_screenwidth(), self.data_window.winfo_screenheight()
+        self.data_window.geometry("%dx%d+0+0" % (0.99 * self.w, 0.9 * self.h))
         self.data_content = []   
         tabControl = ttk.Notebook(self.data_window)
         count = 0
@@ -79,10 +79,6 @@ class DataDisplay(tk.Tk):
             with open(path, 'r', newline="") as f:
                 reader = csv.reader(f)
                 data = list(reader)
-
-            """ for row in range(0, len(data)):
-                for col in range(0, len(data[row])):
-                    tk.Label(display_window, text = data[row][col]).grid(row=row, column=col) """
             
             canvas = tk.Canvas(display_window)
             canvas.grid(row=0, column=0, sticky="news")
@@ -132,6 +128,9 @@ class DataDisplay(tk.Tk):
         vsb = tk.Scrollbar(frame_canvas, orient="vertical", command=canvas.yview)
         vsb.grid(row=0, column=1, sticky='ns')
         canvas.configure(yscrollcommand=vsb.set)
+        hsb = tk.Scrollbar(frame_canvas, orient="horizontal", command=canvas.xview)
+        hsb.grid(row=1, column=0, sticky='we')
+        canvas.configure(xscrollcommand=hsb.set)
 
         # Create a frame to contain the buttons
         frame_buttons = tk.Frame(canvas, bg="blue")
@@ -142,39 +141,12 @@ class DataDisplay(tk.Tk):
                             reader = csv.reader(f)
                             data = list(reader)
         else:
-            data = []
-            with open(path) as f:
-                lines = f.readlines()
-            if len(lines) > 100:
-                lines = lines[0:50]
-
-            for row in lines:
-                new_row = row.split(" ")
-                data.append(new_row)
-
-            for i in range(0, len(data)):
-                for j in range(0, len(data[i])):
-                    if data[i][j] == ('\n' or '\t'):
-                        del data[i][j]
-            for row in data:
-                if row == []:
-                    del row
-
-            while(len(data) < 5):
-                data.append([])
-            maxlen = 0
-            for row in data:
-                if len(row) > maxlen:
-                    maxlen = len(row)
-                while(len(row) < 5):
-                    row.append(' ')
-            for row in data:
-                while(len(row) < maxlen):
-                    row.append('')
+            self.read_txt(frame_canvas, path)
+            return
 
         # Add buttons to the frame
         rows = len(data)
-        columns = len(data[2])
+        columns = len(data[0])
         buttons = [[tk.Button() for j in range(columns)] for i in range(rows)]
         for i in range(0, rows):
             for j in range(0, columns):
@@ -185,16 +157,25 @@ class DataDisplay(tk.Tk):
         frame_buttons.update_idletasks()
 
         # Resize the canvas frame to show exactly 5-by-5 buttons and the scrollbar
-        if rows > 17:
-            rows = 15
+        if rows > 20:
+            rows = 20
         first5columns_width = sum([buttons[0][j].winfo_width() for j in range(0, columns)])
         first5rows_height = sum([buttons[i][0].winfo_height() for i in range(0, rows)])
         frame_canvas.config(width=first5columns_width + vsb.winfo_width(),
-                            height=first5rows_height)
+                            height=first5rows_height + vsb.winfo_height())
 
         # Set the canvas scrolling region
         canvas.config(scrollregion=canvas.bbox("all"))
 
+    def read_txt(self, window, path):
+        text = Text(window, height=self.h, width=self.w)
+        text.pack()
+
+        with open(path, 'r') as f:
+            lines = f.readlines()
+
+        for line in lines:
+            text.insert('2.0', str(line))
 
 if __name__ == "__main__":
     data_visualization = DataDisplay()
