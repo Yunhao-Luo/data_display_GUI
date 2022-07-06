@@ -4,7 +4,7 @@ from distutils.cmd import Command
 from importlib.resources import path
 import tkinter as tk
 import csv
-from tkinter import ttk, Text
+from tkinter import INSERT, ttk, Text
 
 from file_finder import *
 from configuration import *
@@ -168,14 +168,21 @@ class DataDisplay(tk.Tk):
         canvas.config(scrollregion=canvas.bbox("all"))
 
     def read_txt(self, window, path):
-        text = Text(window, height=self.h, width=self.w)
+        text = Text(window, height=50, width=self.w)
         text.pack()
 
         with open(path, 'r') as f:
             lines = f.readlines()
-
+        num = 0
         for line in lines:
-            text.insert('2.0', str(line))
+            line_num = str(num) + '.0'
+            text.insert(INSERT, str(line))
+            print(line)
+            num+=1
+
+        """ for i in range(0, len(lines)):
+            line_num = str(i) + '.0'
+            text.insert(line_num, str(lines[i])) """
 
 if __name__ == "__main__":
     data_visualization = DataDisplay()
