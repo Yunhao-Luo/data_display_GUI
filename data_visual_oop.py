@@ -57,10 +57,8 @@ class DataDisplay(tk.Tk):
         self.data_window.geometry("%dx%d+0+0" % (0.99 * self.w, 0.9 * self.h))
         self.data_content = []   
         tabControl = ttk.Notebook(self.data_window)
-        count = 0
 
         for file in file_name_list:
-            count+=1
             tab = ttk.Frame(tabControl)
             tabControl.add(tab, text = file)
             tabControl.pack(expand = 1, fill ="both") 
@@ -94,7 +92,6 @@ class DataDisplay(tk.Tk):
             with open(path, 'r', newline="") as f:
                             reader = csv.reader(f)
                             data = list(reader)
-            #remove empty lines in .csv
             while [] in data:
                 data.remove([])
         else:
@@ -115,8 +112,8 @@ class DataDisplay(tk.Tk):
             rows = 20
         first5columns_width = sum([buttons[0][j].winfo_width() for j in range(0, columns)])
         first5rows_height = sum([buttons[i][0].winfo_height() for i in range(0, rows)])
-        frame_canvas.config(width=first5columns_width + vsb.winfo_width(),
-                            height=first5rows_height + vsb.winfo_height())
+        frame_canvas.config(width=first5columns_width + vsb.winfo_width() + 5,
+                            height=first5rows_height + vsb.winfo_height() + 20)
 
         canvas.config(scrollregion=canvas.bbox("all"))
 
