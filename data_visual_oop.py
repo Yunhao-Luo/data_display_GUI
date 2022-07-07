@@ -77,7 +77,7 @@ class DataDisplay(tk.Tk):
         frame_canvas.grid_columnconfigure(0, weight=1)
         frame_canvas.grid_propagate(False)
 
-        canvas = tk.Canvas(frame_canvas, bg="yellow")
+        canvas = tk.Canvas(frame_canvas)
         canvas.grid(row=0, column=0, sticky="news")
 
         vsb = tk.Scrollbar(frame_canvas, orient="vertical", command=canvas.yview)
@@ -94,6 +94,9 @@ class DataDisplay(tk.Tk):
             with open(path, 'r', newline="") as f:
                             reader = csv.reader(f)
                             data = list(reader)
+            #remove empty lines in .csv
+            while [] in data:
+                data.remove([])
         else:
             self.read_txt(frame_canvas, path)
             return
