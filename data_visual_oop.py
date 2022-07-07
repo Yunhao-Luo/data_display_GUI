@@ -26,8 +26,6 @@ class DataDisplay(tk.Tk):
         self.option_menu = tk.OptionMenu(self, self.var, *self.dropdown_list)
         self.option_menu.config(width=18)
 
-        self.create_window()
-
     def create_window(self):
 
         tk.Label(self, text="Participant id").grid(row=1)
@@ -130,4 +128,5 @@ class DataDisplay(tk.Tk):
 
 if __name__ == "__main__":
     data_visualization = DataDisplay()
+    data_visualization.create_window()
     data_visualization.mainloop()
