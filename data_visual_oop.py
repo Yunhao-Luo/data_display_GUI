@@ -5,6 +5,7 @@ from importlib.resources import path
 import tkinter as tk
 import csv
 from tkinter import INSERT, ttk, Text
+import sys
 
 from file_finder import *
 from configuration import *
@@ -112,7 +113,7 @@ class DataDisplay(tk.Tk):
             rows = 20
         first5columns_width = sum([buttons[0][j].winfo_width() for j in range(0, columns)])
         first5rows_height = sum([buttons[i][0].winfo_height() for i in range(0, rows)])
-        frame_canvas.config(width=first5columns_width + vsb.winfo_width() + 5,
+        frame_canvas.config(width=first5columns_width + vsb.winfo_width(),
                             height=first5rows_height + vsb.winfo_height() + 20)
 
         canvas.config(scrollregion=canvas.bbox("all"))
@@ -127,6 +128,8 @@ class DataDisplay(tk.Tk):
             text.insert(INSERT, str(line))
 
 if __name__ == "__main__":
+    DATA_PATH = sys.executable
+    DATA_PATH = DATA_PATH[0:DATA_PATH.rfind('/')] + '/data'
     data_visualization = DataDisplay()
     data_visualization.create_window()
     data_visualization.mainloop()

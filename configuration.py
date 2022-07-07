@@ -1,1 +1,3 @@
-DATA_PATH = "/Users/Luo/Internship/data_display_GUI/data"
+import os
+
+DATA_PATH = os.getcwd() + '/data'
