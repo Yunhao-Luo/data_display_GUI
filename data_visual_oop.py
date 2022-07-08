@@ -130,10 +130,6 @@ class DataDisplay(tk.Tk):
 if __name__ == "__main__":
     DATA_PATH = sys.executable
     DATA_PATH = DATA_PATH[0:DATA_PATH.rfind('/')] + '/data'
-    if os.path.exists('path.txt'):
-        with open('path.txt', 'r') as f:
-            DATA_PATH = f.readlines()[0]
-            print(DATA_PATH)
     data_visualization = DataDisplay()
     data_visualization.create_window()
     data_visualization.mainloop()
