@@ -59,13 +59,11 @@ class DataDisplay(tk.Tk):
         self.data_content = []   
         tabControl = ttk.Notebook(self.data_window)
 
-        for file in file_name_list:
+        for file_path in file_name_list:
             tab = ttk.Frame(tabControl)
-            tabControl.add(tab, text = file)
+            tabControl.add(tab, text = file_path)
             tabControl.pack(expand = 1, fill ="both") 
-            path = DATA_PATH
-            path += "/" + file
-            self.tab_construct(tab, path)
+            self.tab_construct(tab, file_path)
 
         self.data_window.mainloop()
 
@@ -129,7 +127,7 @@ class DataDisplay(tk.Tk):
 
 if __name__ == "__main__":
     DATA_PATH = sys.executable
-    DATA_PATH = DATA_PATH[0:DATA_PATH.rfind('/')] + '/data'
+    DATA_PATH = DATA_PATH[0:DATA_PATH.rfind('\\')] + '\\data'
     data_visualization = DataDisplay()
     data_visualization.create_window()
     data_visualization.mainloop()

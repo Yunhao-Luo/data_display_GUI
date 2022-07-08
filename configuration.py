@@ -1,3 +1,3 @@
 import os
 
-DATA_PATH = os.getcwd() + '/data'
+DATA_PATH = os.getcwd() + '\\data'
