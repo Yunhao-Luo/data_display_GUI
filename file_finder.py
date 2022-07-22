@@ -1,5 +1,7 @@
+from textwrap import indent
 from configuration import *
 import os
+import csv
 
 class FileFinder:
     def __init__(self, path):
@@ -11,14 +13,26 @@ class FileFinder:
 
     def find_id_sessions(self, id_name):
         sessions_list = []
+        results_file = ""
         for root, dires, files in os.walk(self.root_path):
             for file in files:
                 if id_name in file and "summary" not in file:
-                    date = file[file.find('_')+1:]
-                    date = date[0:date.find("_")]
+                    date = file[file.find('_')+1:file.rfind("_")]
                     if date not in sessions_list:
                         sessions_list.append(date)
-        return sessions_list
+
+        results_file = self.find_all_files_date(id_name, "sessions")[0]
+        with open(results_file, 'r', newline="") as f:
+            reader = csv.reader(f)
+            data = list(reader)
+        se_list = []
+        for i in data:
+            se_list.append(i[0] + "_" + i[1])
+        res = []
+        for i in sessions_list:
+            if i in se_list:
+                res.append(i)
+        return res
 
     def find_all_files_date(self, id, date):
         files_same_date = []
@@ -30,10 +44,14 @@ class FileFinder:
         return files_same_date
     
     def find_result_file(self, id):
+        sessions = self.find_id_sessions(id)
+        res = []
         for root, dires, files in os.walk(self.root_path):
             for file in files:
-                if id in file and "results" in file:
-                    return(root + "\\" + file)
+                test = file[file.find("_")+1:file.rfind("_")]
+                if id in file and test in sessions and "results" in file:
+                    res.append(root + "\\" + file)
+        return res
 
 
 """ if __name__ == "__main__":

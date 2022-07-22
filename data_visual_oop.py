@@ -38,46 +38,47 @@ class DataDisplay(tk.Tk):
 
     def create_summary(self):
         id = self.participant_name.get()
-        path = self.sessions.find_result_file(id)
-        with open(path, 'r', newline="") as f:
-                            reader = csv.reader(f)
-                            data = list(reader)
-
+        id_list = self.sessions.find_result_file(id)
         summary_file = id + "_summary.csv"
-        session_num = path[path.rfind('\\'):]
-        session_num = session_num[session_num.find("_")+1:]
-        session_start = session_num[session_num.find("_")+1:session_num.rfind("_")]
-        session_num = session_num[0:session_num.find("_")]
-
-        num_corrrect_list = {}
-        task_names = []
-        for i in data:
-            if i[0] not in task_names:
-                task_names.append(i[0])
-            if 'key' not in i[4] and i[4] != "":
-                if i[0] not in num_corrrect_list:
-                    key_list = []
-                    num_corrrect_list[i[0]] = key_list
-                    key_list.append(i[4])
-                else:
-                    num_corrrect_list[i[0]].append(i[4])
-        print(num_corrrect_list)
 
         with open(summary_file, 'w') as csvfile:
-            filewriter = csv.writer(csvfile, delimiter=',',
-                            quotechar='|', quoting=csv.QUOTE_MINIMAL)
-            filewriter.writerow(['ID #', id])
-            filewriter.writerow(['Training session #', session_num])
-            filewriter.writerow(['Task name', ""])
-            for i in task_names:
-                filewriter.writerow(['', i])
-            filewriter.writerow(['# of problems completed ', len(data)-1])
-            filewriter.writerow(['# of problems correct ', ""])
-            for i in num_corrrect_list:
-                filewriter.writerow(['', i + " " + "attempts: " + str(len(num_corrrect_list[i])) + " successes: " + str(num_corrrect_list[i].count('UP'))])
-            filewriter.writerow(['Timestamp of session start & end ', session_start])
-            filewriter.writerow(['Duration of the training session', data[-1][2]])
-            
+            for file_path in id_list:
+                with open(file_path, 'r', newline="") as f:
+                    reader = csv.reader(f)
+                    data = list(reader)
+                    session_num = file_path[file_path.rfind('\\'):]
+                    session_num = session_num[session_num.find("_")+1:]
+                    session_start = session_num[session_num.find("_")+1:session_num.rfind("_")]
+                    session_num = session_num[0:session_num.find("_")]
+
+                    num_corrrect_list = {}
+                    task_names = []
+                    for i in data:
+                        if i[0] not in task_names:
+                            task_names.append(i[0])
+                        if 'key' not in i[4] and i[4] != "":
+                            if i[0] not in num_corrrect_list:
+                                key_list = []
+                                num_corrrect_list[i[0]] = key_list
+                                key_list.append(i[4])
+                            else:
+                                num_corrrect_list[i[0]].append(i[4])
+
+                    
+                    filewriter = csv.writer(csvfile, delimiter=',',
+                                    quotechar='|', quoting=csv.QUOTE_MINIMAL)
+                    filewriter.writerow(['ID #', id])
+                    filewriter.writerow(['Training session #', session_num])
+                    filewriter.writerow(['Task name', ""])
+                    for i in task_names:
+                        filewriter.writerow(['', i])
+                    filewriter.writerow(['# of problems completed ', len(data)-1])
+                    filewriter.writerow(['# of problems correct ', ""])
+                    for i in num_corrrect_list:
+                        filewriter.writerow(['', i + " " + "attempts: " + str(len(num_corrrect_list[i])) + " successes: " + str(num_corrrect_list[i].count('UP'))])
+                    filewriter.writerow(['Timestamp of session start & end ', session_start])
+                    filewriter.writerow(['Duration of the training session', data[-1][2]])
+                    filewriter.writerow(['', ''])
         return summary_file
 
     def show_summary(self):
@@ -119,6 +120,8 @@ class DataDisplay(tk.Tk):
         file_name_list = self.sessions.find_all_files_date(self.participant_name.get(), date)
         count = 2
         for file_path in file_name_list:
+            if "head" in file_path:   # hide head orientation files
+                continue
             tab = "tab" + str(count)
             tab = ttk.Frame(self.tabControl)
             self.tabControl.add(tab, text = file_path[file_path.rfind("\\")+1:])
@@ -169,7 +172,7 @@ class DataDisplay(tk.Tk):
         if first5columns_width > self.w:
             first5columns_width = self.w - 50
         if first5rows_height > self.h:
-            first5rows_height = self.h - 200
+            first5rows_height = self.h - 250
         frame_canvas.config(width=first5columns_width + vsb.winfo_width(),
                             height=first5rows_height + vsb.winfo_height() + 20)
         
